@@ -101,11 +101,7 @@ echo -e '\033[92mYour git configuration:'
 git config --global --list
 
 # enable mysql
-status=service mysql status
-if [$status -eq 3]
-then
-service mysql status
-fi
+service mysql start
 
 echo -e "\n----------\n"
 echo -e "\033[93mplease execute source ~/.zshrc"
