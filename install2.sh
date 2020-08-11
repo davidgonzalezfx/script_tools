@@ -29,19 +29,9 @@ else
 	echo -ne "\033[93mPlease type your github username: \033[0m"
 	read username
 
-	if [ ! -z $username ]
-	then
-		echo "OK"
-	fi
-
-
 	echo -ne "\033[93mPlease type your github email: \033[0m"
 	read email
-
-	if [ ! -z $email ]
-	then
-		echo "OK"
-	fi	
+		
 fi
 
 
@@ -72,13 +62,13 @@ EOF
 else
 # Default Oh-My-Zsh theme
 cat > ~/.oh-my-zsh/themes/robbyrussell.zsh-theme << EOF
-PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
-PROMPT+=' %{$fg[cyan]%}\$new_prompt $(git_prompt_info)'
+PROMPT="%(?:%{\$fg_bold[green]%}➜ :%{\$fg_bold[red]%}➜ )"
+PROMPT+=' %{\$fg[cyan]%}\$new_prompt \$(git_prompt_info)'
 
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
+ZSH_THEME_GIT_PROMPT_PREFIX="%{\$fg_bold[blue]%}git:(\%{$fg[red]%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{\$reset_color%} "
+ZSH_THEME_GIT_PROMPT_DIRTY="%{\$fg[blue]%}) %{\$fg[yellow]%}✗"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{\$fg[blue]%})"
 EOF
 fi
 
@@ -97,15 +87,22 @@ EOF
 echo -e 'set pastetoggle=<F1>\n' > ~/.vimrc
 
 # git config
-git config --global user.email $email
-git config --global user.name $username
+if [ ! -z $email ]
+then
+	git config --global user.email $email
+fi
+
+if [ ! -z $username ]
+then
+	git config --global user.name $username
+fi
 git config --global credential.helper store
 echo -e '\033[92mYour git configuration:'
 git config --global --list
 
 # enable mysql
 status=service mysql status
-if [status -eq 3]
+if [$status -eq 3]
 then
 service mysql status
 fi
