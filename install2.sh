@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+sudo chsh --shell /bin/zsh $(whoami)
 echo -ne "\033[93mDavid mode (y/n): \033[0m"
 read mode
 
