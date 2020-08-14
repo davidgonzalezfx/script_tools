@@ -25,6 +25,9 @@ else
 		
 fi
 
+echo -ne "\033[93mDo you want enable MySQL (y/n): \033[0m"
+read sql
+
 
 if [ $colors == "y" ]
 then
@@ -67,10 +70,12 @@ if [ $plugins == "y" ]
 then
 	# install auto-suggestions
 	git clone -q https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+	# install syntax highlighting
+	sudo apt-get -y -qq install zsh-syntax-highlighting 2> /dev/null
 	# modify .zshrc
 	sed -i '71s/$/ \nplugins=(zsh-autosuggestions)/' ~/.zshrc
 	sed -i '74s/$/ \nsource ~\/.oh-my-zsh\/plugins\/git\/git.plugin.zsh/' ~/.zshrc
-	# sed -i -e '$asource /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' ~/.zshrc
+	sed -i -e '$asource /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' ~/.zshrc
 	sed -i -e '$asource ~/.bash_aliases' ~/.zshrc
 fi
 
@@ -92,7 +97,9 @@ echo -e '\033[92mYour git configuration:'
 git config --global --list
 
 # enable mysql
-service mysql start
+if [ $plugins == "y" ]
+then
+	sudo service mysql start
 
 echo -e "\n----------"
 echo -e "\033[93mplease execute source ~/.zshrc"
