@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 sudo chsh --shell /bin/zsh $(whoami)
+
 echo -ne "\033[93mDavid mode (y/n): \033[0m"
 read mode
 
@@ -9,7 +10,14 @@ then
 	email="dvdramos16@gmail.com"
 	colors="y"
 	plugins="y"
-	sed -i -e '$assh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDM5hW8axyzEYAmk7dDTm8ZpcqtymdHBgpkCj1arh4SO/jSvtgipQphOSrpU2QdQ7f73dPooKJU7T09sq7FDrtKZpnMtvccmqcIayXzUqdll59K/z5PSnk7PpbCFqudL6+omMa0+3jz4eCabdSJV7Krvc6fMuZDN5rjhrBbYcQgN+95/DNNeCyCc/topKoMOtnpxPZn2p9gLypV1FyT067TD7VrbZ5QJ7GxVwXyjkgTAEtyXPPj1/i3yCU+rovAC/lDbhCdw8m3Ejrzo8yMxNqB4TyMvtBdEPtIbJ0hz5pWSfnN9MWqa3Sodi07ytDADEWWcdvS8aLvKE7PXf4HwNZ3 vagrant@ubuntu-bionic' ~/.ssh/authorized_keys
+
+	echo -ne "\033[93mIs it a container (y/n): \033[0m"
+	read container
+
+	# container ssh
+	if [ $container == "y" ]
+	then
+		sed -i -e '$assh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDM5hW8axyzEYAmk7dDTm8ZpcqtymdHBgpkCj1arh4SO/jSvtgipQphOSrpU2QdQ7f73dPooKJU7T09sq7FDrtKZpnMtvccmqcIayXzUqdll59K/z5PSnk7PpbCFqudL6+omMa0+3jz4eCabdSJV7Krvc6fMuZDN5rjhrBbYcQgN+95/DNNeCyCc/topKoMOtnpxPZn2p9gLypV1FyT067TD7VrbZ5QJ7GxVwXyjkgTAEtyXPPj1/i3yCU+rovAC/lDbhCdw8m3Ejrzo8yMxNqB4TyMvtBdEPtIbJ0hz5pWSfnN9MWqa3Sodi07ytDADEWWcdvS8aLvKE7PXf4HwNZ3 vagrant@ubuntu-bionic' ~/.ssh/authorized_keys
 else
 	echo -ne "\033[93mDo you want enable colors (y/n): \033[0m"
 	read colors
@@ -70,13 +78,21 @@ if [ $plugins == "y" ]
 then
 	# install auto-suggestions
 	git clone -q https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-	# install syntax highlighting
-	sudo apt-get -y -qq install zsh-syntax-highlighting 2> /dev/null
+
+	
 	# modify .zshrc
-	sed -i '71s/$/ \nplugins=(zsh-autosuggestions)/' ~/.zshrc
+	sed -i '71s/$/ \nplugins=(zsh-autosuggestions)\n\nZSH_DISABLE_COMPFIX="true"/' ~/.zshrc
 	sed -i '74s/$/ \nsource ~\/.oh-my-zsh\/plugins\/git\/git.plugin.zsh/' ~/.zshrc
-	sed -i -e '$asource /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' ~/.zshrc
 	sed -i -e '$asource ~/.bash_aliases' ~/.zshrc
+
+	# install syntax highlighting
+	echo -ne "\033[93mInstall syntax-highlighting (Ubuntu 16+) (y/n): \033[0m"
+	read syntax
+
+	if [ $syntax == "y" ]
+	then
+		sudo apt-get -y -qq install zsh-syntax-highlighting 2> /dev/null
+		sed -i -e '$asource /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' ~/.zshrc
 fi
 
 # vim paste mode
