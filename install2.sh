@@ -93,6 +93,7 @@ then
 	then
 		sudo apt-get -y -qq install zsh-syntax-highlighting 2> /dev/null
 		sed -i -e '$asource /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' ~/.zshrc
+	fi
 fi
 
 # vim paste mode
@@ -122,5 +123,4 @@ fi
 echo -e "\n----------"
 echo -e "\033[93mplease execute source ~/.zshrc"
 echo -e "\n----------\n"
-
 
