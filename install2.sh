@@ -26,6 +26,7 @@ alias slog='git log --oneline --graph  --decorate'
 alias ccommits='git shortlog -s -n --all'
 alias lsd='ls -1d */'
 alias lsl='ls -1'
+alias load='source ~/.zshrc;echo "loaded succesful"'
 EOF
 
 else
