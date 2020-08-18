@@ -67,7 +67,7 @@ else
 # Default Oh-My-Zsh theme
 echo "
 PROMPT=\"%(?:%{\$fg_bold[green]%}➜ :%{\$fg_bold[red]%}➜ )\"
-PROMPT+=' %{\$fg[cyan]%}$new_prompt \$(git_prompt_info)'
+PROMPT+=' %{\$fg[cyan]%}$new_prompt %{\$reset_color%}\$(git_prompt_info)'
 
 ZSH_THEME_GIT_PROMPT_PREFIX=\"%{\$fg_bold[blue]%}git:(%{$fg[red]%}\"
 ZSH_THEME_GIT_PROMPT_SUFFIX=\"%{\$reset_color%} \"
@@ -116,10 +116,12 @@ echo -e '\033[92mYour git configuration:'
 git config --global --list
 
 # enable mysql
-if [ $plugins == "y" ]
+if [ $sql == "y" ]
 then
 	sudo service mysql start
 fi
+
+
 
 echo -e "\n----------"
 echo -e "\033[93mplease execute source ~/.zshrc"
