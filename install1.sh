@@ -5,6 +5,18 @@ echo -e "\033[95mapt-get update working..."
 sudo apt-get -y -qq update 2> /dev/null
 echo -e "\033[92mupdate finished"
 echo -e "\n----------\n"
+echo -e "\033[95mInstalling neovim..."
+sudo add-apt-repository ppa:neovim-ppa/stable 
+sudo apt-get -y -qq update 2> /dev/null
+sudo apt-get -y -qq install neovim
+mkdir -p ~/.config/nvim
+echo "
+set runtimepath^=~/.vim runtimepath+=~/.vim/after
+let &packpath = &runtimepath
+source ~/.vimrc
+" > ~/.config/nvim/init.vim
+echo -e "\033[92mnvim installed"
+echo -e "\n----------\n"
 echo -e "\033[95mInstalling zsh..."
 sudo apt-get -y -qq install zsh
 echo -e "\033[92mzsh installed"

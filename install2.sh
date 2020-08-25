@@ -111,7 +111,51 @@ then
 fi
 
 # vim paste mode
-echo -e 'set pastetoggle=<F2>\n' > ~/.vimrc
+echo "
+set wrap
+syntax enable
+set wildmenu
+set showcmd
+set incsearch
+set clipboard=unnamed
+set autoindent
+set nostartofline
+set number
+set pastetoggle=<F12>
+set numberwidth=1
+set encoding=utf8
+set showmatch
+set relativenumber
+set noshowmode
+set pastetoggle=<F2>
+
+" Plugins
+call plug#begin('~/.vim/plugged')
+
+" Themes
+Plug 'morhetz/gruvbox'
+
+
+" IDE
+Plug 'easymotion/vim-easymotion'
+Plug 'scrooloose/nerdtree'
+
+call plug#end()
+
+colorscheme gruvbox
+let g:gruvbox_contrast_dark = "hard"
+let NERDTreeQuitOnOpen=1
+
+" Remapping
+let mapleader=","
+nmap <Leader>f <Plug>(easymotion-s2)
+nmap <Leader>b :NERDTreeFind<CR>
+nmap <Leader>s :w<CR>
+nmap <Leader>x :wq<CR>
+nmap <Leader>q :q<CR>
+imap <Leader><Leader> <ESC>
+nmap <Leader>z :set wrap!<CR>
+" > ~/.vimrc
 
 # git config
 if [ ! -z $email ]
