@@ -129,25 +129,25 @@ set relativenumber
 set noshowmode
 set pastetoggle=<F2>
 
-" Plugins
+\" Plugins
 call plug#begin('~/.vim/plugged')
 
-" Themes
+\" Themes
 Plug 'morhetz/gruvbox'
 
 
-" IDE
+\" IDE
 Plug 'easymotion/vim-easymotion'
 Plug 'scrooloose/nerdtree'
 
 call plug#end()
 
 colorscheme gruvbox
-let g:gruvbox_contrast_dark = "hard"
+let g:gruvbox_contrast_dark = \"hard\"
 let NERDTreeQuitOnOpen=1
 
-" Remapping
-let mapleader=","
+\" Remapping
+let mapleader=\",\"
 nmap <Leader>f <Plug>(easymotion-s2)
 nmap <Leader>b :NERDTreeFind<CR>
 nmap <Leader>s :w<CR>
