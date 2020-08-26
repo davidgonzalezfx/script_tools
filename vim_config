@@ -1,4 +1,4 @@
-et wrap
+set wrap
 syntax enable
 set wildmenu
 set showcmd
