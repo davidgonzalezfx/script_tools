@@ -11,14 +11,8 @@ sudo apt install -y -qq software-properties-common
 sudo add-apt-repository ppa:neovim-ppa/unstable 
 sudo apt-get -y -qq update 2> /dev/null
 sudo apt-get -y -qq install neovim
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 mkdir -p ~/.config/nvim
-echo "
-set runtimepath^=~/.vim runtimepath+=~/.vim/after
-let &packpath = &runtimepath
-source ~/.vimrc
-" > ~/.config/nvim/init.vim
+cat init.vim > ~/.config/nvim/init.vim
 echo -e "\033[92mnvim installed"
 echo -e "\n----------\n"
 

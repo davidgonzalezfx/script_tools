@@ -11,25 +11,12 @@ then
 	colors="y"
 	plugins="y"
 
-	# echo -ne "\033[93mIs it a container (y/n): \033[0m"
-	# read container
-
-	# container ssh
-	# if [ $container == "y" ]
-	# then
-	# 	sed -i -e '$assh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDM5hW8axyzEYAmk7dDTm8ZpcqtymdHBgpkCj1arh4SO/jSvtgipQphOSrpU2QdQ7f73dPooKJU7T09sq7FDrtKZpnMtvccmqcIayXzUqdll59K/z5PSnk7PpbCFqudL6+omMa0+3jz4eCabdSJV7Krvc6fMuZDN5rjhrBbYcQgN+95/DNNeCyCc/topKoMOtnpxPZn2p9gLypV1FyT067TD7VrbZ5QJ7GxVwXyjkgTAEtyXPPj1/i3yCU+rovAC/lDbhCdw8m3Ejrzo8yMxNqB4TyMvtBdEPtIbJ0hz5pWSfnN9MWqa3Sodi07ytDADEWWcdvS8aLvKE7PXf4HwNZ3 vagrant@ubuntu-bionic' ~/.ssh/authorized_keys
-	# fi
 	# set aliases
-cat > ~/.bash_aliases << EOF
-alias gfpush='git push -f origin "\$(git_current_branch)"'
-alias slog='git log --oneline --graph  --decorate'
-alias ccommits='git shortlog -s -n --all'
-alias lsd='ls -1d */'
-alias lsl='ls -1'
-alias load='source ~/.zshrc;echo "loaded succesful"'
-alias vi='nvim'
-EOF
-
+	cat bash_aliases > ~/.bash_aliases
+	# vimrc 
+	cat vim_config > ~/.vimrc
+	cat coc-settings.json > ~/.config/nvim/coc-settings.json
+	cat javascript.snippets > ~/.config/coc/utilsnips/javascript.snippets
 else
 	echo -ne "\033[93mDo you want enable prompt colors (y/n): \033[0m"
 	read colors
@@ -110,9 +97,6 @@ then
 		sed -i -e '$asource /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' ~/.zshrc
 	fi
 fi
-
-# vimrc 
-cat vim_config > ~/.vimrc
 
 # git config
 if [ ! -z $email ]
