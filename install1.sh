@@ -14,7 +14,7 @@ echo -e "\n----------\n"
 
 echo -e "\033[95mInstalling neovim...\033[0m"
 sudo apt install -y -qq software-properties-common
-sudo add-apt-repository ppa:neovim-ppa/unstable 
+sudo add-apt-repository -y ppa:neovim-ppa/unstable 
 sudo apt-get -y -qq update 2> /dev/null
 sudo apt-get -y -qq install neovim
 mkdir -p ~/.config/nvim
