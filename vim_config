@@ -9,36 +9,79 @@ set nostartofline
 set number
 set pastetoggle=<F12>
 set numberwidth=1
-set encoding=utf8
+set encoding=UTF-8
 set showmatch
 set relativenumber
 set pastetoggle=<F2>
+set mouse=a
+set noshowmode
 
 " Plugins
 call plug#begin('~/.vim/plugged')
 
 " Themes
 Plug 'morhetz/gruvbox'
-
+Plug 'joshdick/onedark.vim'
 
 " IDE
-Plug 'easymotion/vim-easymotion'
 Plug 'scrooloose/nerdtree'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'preservim/nerdcommenter'
+
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'vwxyutarooo/nerdtree-devicons-syntax'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'ryanoasis/vim-devicons'
+
 
 call plug#end()
 
-colorscheme gruvbox
-let g:gruvbox_contrast_dark = "hard"
+colorscheme onedark
+"let g:gruvbox_contrast_dark = "hard"
 let NERDTreeQuitOnOpen=1
 
 " Remapping
 let mapleader=","
-nmap <Leader>f <Plug>(easymotion-s2)
 nmap <Leader>b :NERDTreeFind<CR>
 nmap <Leader>s :w<CR>
 nmap <Leader>x :wq<CR>
-nmap <Leader>q :q<CR>
+nmap <Leader>q :q!<CR>
 imap <Leader><Leader> <ESC>
 nmap <Leader>z :set wrap!<CR>
-nmap qa ggvG$
 
+autocmd FileType c setlocal autoindent shiftwidth=4 tabstop=4 noexpandtab 
+
+
+let g:webdevicons_enable = 1
+let g:webdevicons_enable_airline_tabline = 1
+let g:webdevicons_enable_airline_statusline = 1
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline_theme='onedark'
+let g:airline_powerline_fonts = 1
+
+
+let g:NERDTreeIgnore = ['^node_modules$']
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <F2> <Plug>(coc-rename)
