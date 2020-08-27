@@ -16,6 +16,7 @@ then
 	# vimrc 
 	cat vim_config > ~/.vimrc
 	cat coc-settings.json > ~/.config/nvim/coc-settings.json
+	mkdir -p ~/.config/coc/ultisnips
 	cat javascript.snippets > ~/.config/coc/utilsnips/javascript.snippets
 else
 	echo -ne "\033[93mDo you want enable prompt colors (y/n): \033[0m"
