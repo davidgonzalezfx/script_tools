@@ -6,12 +6,6 @@ sudo apt-get -y -qq update 2> /dev/null
 echo -e "\033[92mupdate finished\033[0m"
 echo -e "\n----------\n"
 
-echo -e "\033[95mInstalling nodejs...\033[0m"
-curl -sL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
-sudo apt-get install -y -qq nodejs 2> /dev/null
-echo -e "\033[92nodejs installed\033[0m"
-echo -e "\n----------\n"
-
 echo -e "\033[95mInstalling neovim...\033[0m"
 sudo apt install -y -qq software-properties-common
 sudo add-apt-repository -y ppa:neovim-ppa/unstable 
