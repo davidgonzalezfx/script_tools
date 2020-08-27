@@ -27,7 +27,7 @@ Plug 'joshdick/onedark.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+/*Plug 'neoclide/coc.nvim', {'branch': 'release'}*/
 Plug 'preservim/nerdcommenter'
 
 Plug 'Xuyuanp/nerdtree-git-plugin'
