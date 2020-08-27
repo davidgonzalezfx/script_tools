@@ -15,10 +15,6 @@ then
 	cat bash_aliases > ~/.bash_aliases
 	# vimrc 
 	cat vim_config > ~/.vimrc
-	vim -c 'CocInstall -sync coc-json coc-pairs coc-python coc-sh coc-snippets coc-sql|q'
-	cat coc-settings.json > ~/.config/nvim/coc-settings.json
-	mkdir -p ~/.config/coc/ultisnips
-	cat javascript.snippets > ~/.config/coc/utilsnips/javascript.snippets
 else
 	echo -ne "\033[93mDo you want enable prompt colors (y/n): \033[0m"
 	read colors
