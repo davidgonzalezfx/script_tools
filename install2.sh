@@ -46,7 +46,7 @@ then
 	sudo apt-get -y install nginx
 	echo "Holberton School" > /var/www/html/index.html
 	echo "Ceci n'est pas une page" > /usr/share/nginx/html/not_found.html
-	sed -i 's/server_name _;/server_name _;\n\trewrite ^\/redirect_me http:\/\/davidgonzalezfx.xyz permanent;\n\n\terror_page 404 \/not_found.html;\n\tlocation = \/not_found.html {\n\t\troot \/usr\/share\/nginx\/html;\n\t\tinternal;\n\t}/' /etc/nginx/sites-available/default
+	sed -i 's/server_name _;/server_name _;\n\trewrite ^\/redirect_me http:\/\/davidgonzalezfx.xyz permanent;\n\n\terror_page 404 \/not_found.html;\n\tlocation = \/not_found.html {\n\t\troot \/usr\/share\/nginx\/html;\n\t\tinternal;\n\t}\n\tadd_header X-Served-By \$hostname;/' /etc/nginx/sites-available/default
 	sudo service nginx reload
 fi
 
