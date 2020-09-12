@@ -16,24 +16,19 @@ set pastetoggle=<F2>
 set mouse=a
 set noshowmode
 
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
 
 " Plugins
 call plug#begin('~/.vim/plugged')
 
 " Themes
-" Plug 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'
 " Plug 'joshdick/onedark.vim'
 
 " IDE
 " Plug 'scrooloose/nerdtree'
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
-" /*Plug 'neoclide/coc.nvim', {'branch': 'release'}*/
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}*/
 " Plug 'preservim/nerdcommenter'
 
 " Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -44,8 +39,8 @@ call plug#begin('~/.vim/plugged')
 
 call plug#end()
 
-" colorscheme onedark
-"let g:gruvbox_contrast_dark = "hard"
+colorscheme gruvbox
+let g:gruvbox_contrast_dark = "hard"
 le" t NERDTreeQuitOnOpen=1
 
 " Remapping
