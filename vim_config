@@ -1,88 +1,138 @@
-set wrap
-syntax enable
-set wildmenu
-set showcmd
-set incsearch
-set clipboard=unnamed
-set autoindent
-set nostartofline
+" Basic Configs
 set number
-set pastetoggle=<F12>
 set numberwidth=1
-set encoding=UTF-8
-set showmatch
-set relativenumber
-set pastetoggle=<F2>
 set mouse=a
-set noshowmode
+set clipboard=unnamed
+syntax enable
+set showcmd
+set ruler
+set encoding=utf-8
+set showmatch "match {} [] and ()
+set sw=2 "shiftwidth - number of spaces for indentation
+set relativenumber
+set laststatus=2 "show bar menu
+set noshowmode "hide <insert>
+set nowrap "full lines
+set wildmenu "<Tab> completion (vim)
+set incsearch "show search matches (vim)
+set nohlsearch " turn off highlighting after search
+set nostartofline
+set pastetoggle=<F2>
+set ignorecase
+set smartcase
 
-
-" Plugins
+" Plugins installations
 call plug#begin('~/.vim/plugged')
 
 " Themes
 Plug 'morhetz/gruvbox'
-" Plug 'joshdick/onedark.vim'
+Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 
 " IDE
-" Plug 'scrooloose/nerdtree'
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}*/
-" Plug 'preservim/nerdcommenter'
+Plug 'easymotion/vim-easymotion'
+Plug 'scrooloose/nerdtree'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'psliwka/vim-smoothie'
+Plug 'jiangmiao/auto-pairs'
+Plug 'scrooloose/nerdcommenter'
 
-" Plug 'Xuyuanp/nerdtree-git-plugin'
-" Plug 'vwxyutarooo/nerdtree-devicons-syntax'
-" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-" Plug 'ryanoasis/vim-devicons'
+" Frontend
+Plug 'mxw/vim-jsx'
+Plug 'elzr/vim-json'
+Plug 'mattn/emmet-vim'
+Plug 'pangloss/vim-javascript'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 
+" Deoplete competion
+"if has('nvim')
+  "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"else
+  "Plug 'Shougo/deoplete.nvim'
+  "Plug 'roxma/nvim-yarp'
+  "Plug 'roxma/vim-hug-neovim-rpc'
+"endif
+
+" Lighline
+ Plug 'itchyny/lightline.vim'
+ Plug 'maximbaz/lightline-ale'
+
+ " ALE - linter and prettier support
+ "Plug 'w0rp/ale'
+ Plug 'dense-analysis/ale'
+
+" Git
+Plug 'itchyny/vim-gitbranch'
+
+" End Plug call
 call plug#end()
 
-colorscheme gruvbox
-let g:gruvbox_contrast_dark = "hard"
-le" t NERDTreeQuitOnOpen=1
+
+" Theme config
+" colorscheme gruvbox
+colorscheme material
+" let g:material_theme_style = "default"
+let g:material_terminal_italics = 1
+if (has('termguicolors'))
+  set termguicolors
+endif
+if !has('nvim')
+  let &t_ZH="\e[3m"
+  let &t_ZR="\e[23m"
+endif
+
 
 " Remapping
 let mapleader=","
-nmap <Leader>b :NERDTreeFind<CR>
+" save with ,s 
 nmap <Leader>s :w<CR>
+" quit and save with ,x
 nmap <Leader>x :wq<CR>
+" quit forced with ,q
 nmap <Leader>q :q!<CR>
+" command mode with ,, on <Insert> mode
 imap <Leader><Leader> <ESC>
+" toggle wrap with ,z
 nmap <Leader>z :set wrap!<CR>
+" easymotion
+nmap <Leader>e <Plug>(easymotion-sn)
+" reamp emmet trigger key
+" let g:user_emmet_leader_key='<Leader>m'
+let g:user_emmet_mode='a'
+" Buffers switch
+nmap <Leader>bn :bn<CR>
+nmap <Leader>bp :bp<CR>
+" Files fzf
+nmap <Leader>fs :GFiles<CR>
+nmap <Leader>bs :Buffers<CR>
+" switch tabs
+nmap <Leader><Tab> gT
 
-" autocmd FileType c setlocal autoindent shiftwidth=4 tabstop=4 noexpandtab 
+" NERDTree config
+nmap <Leader>E :NERDTreeToggle<CR>
+let NERDTreeQuitOnOpen=1
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeIgnore = ['^node_modules$']
+
+" Deoplete config
+let g:deoplete#enable_at_startup = 1
 
 
-" let g:webdevicons_enable = 1
-" let g:webdevicons_enable_airline_tabline = 1
-" let g:webdevicons_enable_airline_statusline = 1
+" Lighline config
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+      \   'right': [ [ 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'filetype'] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'gitbranch#name'
+      \ },
+      \ }
 
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#formatter = 'unique_tail'
-" let g:airline_theme='onedark'
-" let g:airline_powerline_fonts = 1
-
-
-" let g:NERDTreeIgnore = ['^node_modules$']
-
-" Use <c-space> to trigger completion.
-" inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use K to show documentation in preview window
-" nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-" function! s:show_documentation()
-"   if (index(['vim','help'], &filetype) >= 0)
-"     execute 'h '.expand('<cword>')
-"   else
-"     call CocAction('doHover')
-"   endif
-" endfunction
-
-" Highlight symbol under cursor on CursorHold
-" autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Remap for rename current word
-" nmap <F2> <Plug>(coc-rename)
