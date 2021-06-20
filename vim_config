@@ -6,7 +6,7 @@ set clipboard=unnamed
 syntax enable
 set showcmd
 set ruler
-set encoding=utf-8
+set encoding=UTF-8
 set showmatch "match {} [] and ()
 set sw=2 "shiftwidth - number of spaces for indentation
 set relativenumber
@@ -20,7 +20,8 @@ set nostartofline
 set pastetoggle=<F2>
 set ignorecase
 set smartcase
-
+set guicursor=n-i:ver400 " set a vertical line as cursor for normal and insert mode
+ 
 " Plugins installations
 call plug#begin('~/.vim/plugged')
 
@@ -36,6 +37,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'psliwka/vim-smoothie'
 Plug 'jiangmiao/auto-pairs'
 Plug 'scrooloose/nerdcommenter'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Frontend
 Plug 'mxw/vim-jsx'
@@ -112,10 +115,11 @@ nmap <Leader><Tab> gT
 
 " NERDTree config
 nmap <Leader>E :NERDTreeToggle<CR>
-let NERDTreeQuitOnOpen=1
+"let NERDTreeQuitOnOpen=1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 let g:NERDTreeIgnore = ['^node_modules$']
+let g:webdevicons_conceal_nerdtree_brackets = 1
 
 " Deoplete config
 let g:deoplete#enable_at_startup = 1
