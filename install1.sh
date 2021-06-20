@@ -3,6 +3,9 @@
 # install zsh
 echo -e "\033[95mapt-get update working...\033[0m"
 sudo apt-get -y -qq update 2> /dev/null
+sudo apt-get -y -qq upgrade
+sudo apt-get -y -qq dist-upgrade
+sudo apt-get -y -qq autoremove
 echo -e "\033[92mupdate finished\033[0m"
 echo -e "\n----------\n"
 
