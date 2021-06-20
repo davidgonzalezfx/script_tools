@@ -10,6 +10,7 @@ then
 	email="dvdramos16@gmail.com"
 	colors="y"
 	plugins="y"
+	new_prompt="davidgonzalezfx"
 
 	# set aliases
 	cat bash_aliases > ~/.bash_aliases
@@ -27,28 +28,12 @@ else
 
 	echo -ne "\033[93mPlease type your github email: \033[0m"
 	read email
+
+	echo -ne "\033[93mPlease type your new prompt: \033[0m"
+	read new_prompt
 		
 fi
 
-echo -ne "\033[93mPlease type your new prompt: \033[0m"
-read new_prompt
-
-echo -ne "\033[93mDo you want enable MySQL (y/n): \033[0m"
-read sql
-
-echo -ne "\033[93mDo you want to config Nginx (y/n): \033[0m"
-read nginx
-
-if [ $nginx == "y" ]
-then
-	# Install NGNINX an start service
-	apt-get -y update
-	sudo apt-get -y install nginx
-	echo "Holberton School" > /var/www/html/index.html
-	echo "Ceci n'est pas une page" > /usr/share/nginx/html/not_found.html
-	sed -i 's/server_name _;/server_name _;\n\trewrite ^\/redirect_me http:\/\/davidgonzalezfx.xyz permanent;\n\n\terror_page 404 \/not_found.html;\n\tlocation = \/not_found.html {\n\t\troot \/usr\/share\/nginx\/html;\n\t\tinternal;\n\t}\n\tadd_header X-Served-By \$hostname;/' /etc/nginx/sites-available/default
-	sudo service nginx reload
-fi
 
 if [ $colors == "y" ]
 then
@@ -111,11 +96,6 @@ git config --global credential.helper store
 echo -e '\033[92mYour git configuration:'
 git config --global --list
 
-# enable mysql
-if [ $sql == "y" ]
-then
-	sudo service mysql start
-fi
 
 
 
