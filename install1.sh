@@ -19,6 +19,12 @@ cat init.vim > ~/.config/nvim/init.vim
 echo -e "\033[92mnvim installed\033[0m"
 echo -e "\n----------\n"
 
+echo -e "\033[95mInstalling plug...\033[0m"
+curl -fLo ~/.var/app/io.neovim.nvim/data/nvim/site/autoload/plug.vim \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+echo -e "\033[92mplug installed\033[0m"
+echo -e "\n----------\n"
+
 echo -e "\033[95mInstalling nvm and node...\033[0m"
 wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
 source ~/.profile
