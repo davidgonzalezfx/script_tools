@@ -13,7 +13,6 @@
 ## Table of Content
 * [Description](#description)
 * [Environment](#environment)
-* [Features](#features)
 * [Installation](#installation)
 * [Usage](#usage)
 * [Roadmap](#roadmap)
@@ -27,13 +26,7 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
 
 #### Environment
 
-This project is interpreted/tested on Ubuntu 14.04 LTS using python3 (version 3.4.3)
-
-#### Features
-
-- feature 1
-- feature 2
-- feature 3
+This project is interpreted/tested on Ubuntu [OS] using [technologies] [versions]
 
 #### Installation
 
@@ -52,10 +45,10 @@ demo code - photo - video
 <details open>
   <summary>Part X</summary>
   
-  - [X] 
-  - [X] 
-  - [ ] 
-  - [ ] 
+  - [X] feature 
+  - [X] feature 
+  - [ ] feature 
+  - [ ] feature 
 </details>
 
 
