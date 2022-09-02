@@ -1,3 +1,8 @@
+WSL: install
+
+* dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+* dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+
 <p align="center">
   <img src="<image>" width="80" height="80">
   <h3 align="center">Project title</h3>
